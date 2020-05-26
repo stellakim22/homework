@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet"> 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <title>1주차 과제 스파르타코딩</title>
+<style>
+* {
+font-family: 'Jua', sans-serif;
+}
+    h2, h5 {
+    display: inline;
+}
+.wrap {
+    width: 500px;
+    margin: auto;
+}
+.button {
+    text-align: center;
+    
+}
+
+.info-temp {
+  color: blue;
+}
+
+</style>
+<script>
+
+function order() {
+let name = $('#order_name').val();
+let count = $('#order_count').val();
+let address = $('#order_address').val();
+let phone = $('#order_phone').val();
+
+if (name == ""){
+  alert('이름을 입력해주세요');
+}
+else if (count == ""){
+  alert('수량을 입력해주세요');
+}
+else if (address == ""){
+  alert ('주소를 입력해주세요');
+}
+else if (phone == ""){
+  alert ('핸드폰번호를 입력해주세요');
+}
+else if (phone == ""){
+  alert('휴대폰번호 입력 형식이 틀립니다.')
+}
+}
+$(document).ready(function () {
+            alert('다 로딩됐다!');
+            $.ajax({
+                type: "GET",
+                url: "https://api.manana.kr/exchange/rate.json",
+                data: {},
+                success: function (response) {
+                  console.log(response);
+                    let exchange = response[1]["rate"];
+                    $("#exchange").text(exchange);
+                }
+            });
+        });
+
+
+</script>
+</head>
+
+<body>
+    <div class="wrap">
+        <img class="card-img-top"
+            src="https://search.pstatic.net/common/?src=https%3A%2F%2Fg-selected.pstatic.net%2FMjAxOTA4MjZfMTQ0%2FMDAxNTY2ODAxMTA4Nzk2.6hAsaYqFSUOX7oj41rFawJGwlqAzBzkjbw7DtGKIE0Ag.akxqJ8QM8nwOmksutpFBCmqCNJTckuAZjNN5DUkaTN0g.JPEG%2FFDC61FE0-371D-4EFB-89CB-852DE6C737EAL0001.JPG&type=b400"
+            alt="Card image cap">
+            <div class="card-body info">
+                <h2 class="card-title">로미스텔라 폰케이스</h2>
+                <h5 class="card-text"> 가격 : 19000원/개</h5>
+                <p class="card-text">직접 그린 그림으로 만들어지는 감각적인 로미스텔라 케이스</p>
+                <div class="info-temp">
+                  "달러-원 환율: "
+                  <span id="exchange">1240.77</span>
+                </div>
+ </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">주문자 이름</span>
+            </div>
+            <input id= "order_name" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">수량</label>
+            </div>
+            <select class="custom-select" id="order_count">
+              <option selected>--수량을 선택하세요--</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
+            </div>
+            <input id= "order_address" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
+            </div>
+            <input id= "order_phone" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="order"> <button onclick="order()" type="button" class="btn btn-primary">주문하기</button></div>
+         
+      </div></div>
+          
+    </div>
+</body>
+
+</html>
